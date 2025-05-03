@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%block content%}
+    <div class="container">
+        <div class="row mt-4">
+            <h3>Cadastro de Usuários</h3>
+            <form action="" method="post" class="row mt-4">
+                {{forms.csrf_token}}
+                
+                {{forms.username.label()}}
+                {{forms.username}}
+
+                {{forms.senha.label()}}
+                {{forms.senha}}
+
+                {{forms.confirmacao_senha.label()}}
+                {{forms.confirmacao_senha}}
+
+                {{forms.btnSubmit()}}
+
+
+            </form>
+        </div>
+    </div>
+{%endblock%}

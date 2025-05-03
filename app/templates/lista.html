@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{%block content%}
+   <div class="container">
+
+   <div class="row">
+    <h3>Lista de Veículos</h3>
+    <form action="" method="get"  class="row mt-4">
+        <div class="col-9">
+            Pesquisar
+            <input type="text" name="pesquisa" class="form-control">
+        </div>
+       <div class="col-3">
+                    <button type="submit" class="btn btn-primary mt-4">Pesquisar</button>
+        </div>
+
+    </form>
+
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Veiculo</th>
+                    <th>Motor</th>
+                    <th>Óleo de motor</th>
+                    <th>Cx de Marcha</th>
+                    <th>Óleo da Cx</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for linha in context['dados'] %}
+                <tr>
+                    <td>{{linha.numero_ordem}}</td>
+                    <td>{{linha.motor}}</td>
+                    <td>{{linha.oleo_motor}}</td>
+                    <td>{{linha.caixa}}</td>
+                    <td>{{linha.oleo_caixa}}</td>
+                    <td><a href="{{url_for('update', numero_ordem = linha.numero_ordem)}}" class="btn btn-info"><img src="{{url_for('static', filename='img/lapis.png')}}" width="30" height="30"  alt=""></a></td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+
+    <div class="cabecalho mt-4">
+        {%include 'nav.html'%}
+    </div>
+   
+   </div>
+{%endblock%}
+ 

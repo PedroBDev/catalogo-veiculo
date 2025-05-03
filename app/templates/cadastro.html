@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%block content%}
+    <div class="cabecalho">
+        {%include 'nav.html'%}
+    </div>
+    <div class="container">
+        <div class="row mt-4">
+            <h3>Cadastro de Veículos</h3>
+            <form action="" method="post" class="row mt-4">
+                {{forms.csrf_token}}
+                
+                {{forms.numero_ordem.label()}}
+                {{forms.numero_ordem}}
+
+                {{forms.motor.label()}}
+                {{forms.motor}}
+
+                {{forms.oleo_motor.label()}}
+                {{forms.oleo_motor}}
+
+                {{forms.caixa.label()}}
+                {{forms.caixa}}
+
+                {{forms.oleo_caixa.label()}}
+                {{forms.oleo_caixa}}
+
+                {{forms.btnSubmit()}}
+
+
+            </form>
+        </div>
+    </div>
+{%endblock%}

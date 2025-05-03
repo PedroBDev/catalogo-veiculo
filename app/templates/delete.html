@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{%block content%}
+    <div class="cabecalho">
+        {%include 'nav.html'%}
+    </div>
+    <div class="container">
+        <div class="row mt-4">
+            <h3>Deletar Veículos</h3>
+            <form action="" method="post" class="row mt-4">
+                {{forms.csrf_token}}
+                
+                {{forms.numero_ordem.label()}}
+                {{forms.numero_ordem}}
+
+                {{forms.btnSubmitdelete()}}
+
+
+            </form>
+
+        </div>
+
+    </div>
+{%endblock%}
