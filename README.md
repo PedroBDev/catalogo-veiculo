@@ -9,6 +9,7 @@ Este é um sistema simples de cadastro e edição de veículos desenvolvido com 
 - Flask-WTF
 - SQLAlchemy
 - Bootstrap (no front-end)
+- HTML e CSS3
 
 ---
 
