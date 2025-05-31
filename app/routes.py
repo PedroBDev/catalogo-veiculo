@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, url_for, request, redirect, flash
 from app.models import Veiculo
-from app.forms import VeiculoForm, VeiculoFormDelete, VeiculoFormUpdate, UserForm, LoginForm
+from app.forms import VeiculoForm, VeiculoFormUpdate, UserForm, LoginForm
 from flask_login import current_user, login_user, logout_user
 
 @app.route("/", methods=('GET', 'POST'))

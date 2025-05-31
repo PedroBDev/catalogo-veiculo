@@ -57,7 +57,8 @@ class VeiculoForm(FlaskForm):
 
         db.session.add(veiculo)
         db.session.commit()
-        
+
+
 class VeiculoFormUpdate(FlaskForm):
     numero_ordem=IntegerField('Veículo', validators=[DataRequired()])
     motor=StringField('Motor', validators=[DataRequired()])
