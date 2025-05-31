@@ -1,12 +1,87 @@
-{%extends 'base.html'%}
-{%block content%}
-    <div>
-        <h3>Bem Vindo ao catalogo de veiculos da mobiBrasil</h3>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    <h3>Lista de Veículos</h3>
+    <form action="" method="get" class="row mt-4">
+      <div class="col-9">
+        Pesquisar
+        <input type="text" name="pesquisa" class="form-control">
+      </div>
+      <div class="col-3">
+        <button type="submit" class="btn btn-primary mt-4">Pesquisar</button>
+      </div>
+    </form>
+
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Veículo</th>
+            <th>Motor</th>
+            <th>Óleo de motor</th>
+            <th>Cx de Marcha</th>
+            <th>Óleo da Cx</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for linha in context['dados'] %}
+          <tr>
+            <td>{{ linha.numero_ordem }}</td>
+            <td>{{ linha.motor }}</td>
+            <td>{{ linha.oleo_motor }}</td>
+            <td>{{ linha.caixa }}</td>
+            <td>{{ linha.oleo_caixa }}</td>
+            <td>
+              <a href="{{ url_for('update', numero_ordem=linha.numero_ordem) }}" class="btn btn-info">
+                <img src="{{ url_for('static', filename='img/lapis.png') }}" width="30" height="30" alt="">
+              </a>
+              
+              <!-- Botão que dispara a confirmação -->
+              <button type="button" class="btn btn-danger" onclick="confirmarExclusao('{{ linha.numero_ordem }}')">
+                <img src="{{ url_for('static', filename='img/deletar.png') }}" width="30" height="30" alt="">
+              </button>
+
+              <!-- Formulário oculto para exclusão -->
+              <form id="form-{{ linha.numero_ordem }}" method="POST" action="{{ url_for('delete', numero_ordem=linha.numero_ordem) }}" style="display: none;">
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
+
+    <br>
+
     <div class="cabecalho">
-       {%include 'nav.html'%}
+      {% include 'nav.html' %}
     </div>
+  </div>
+</div>
 
+<!-- Importa SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-{%endblock%}
+<!-- Script de confirmação -->
+<script>
+  function confirmarExclusao(numero_ordem) {
+    Swal.fire({
+      title: 'Excluir veículo?',
+      text: 'Essa ação não poderá ser desfeita!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sim, excluir',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById('form-' + numero_ordem).submit();
+      }
+    });
+  }
+</script>
+{% endblock %}

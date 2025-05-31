@@ -57,20 +57,7 @@ class VeiculoForm(FlaskForm):
 
         db.session.add(veiculo)
         db.session.commit()
-
-class VeiculoFormDelete(FlaskForm):
-    numero_ordem=IntegerField('Veículo', validators=[DataRequired()])
-    btnSubmitdelete=SubmitField('deletar')
-
-    def delete(self):
         
-        veiculo_delete = Veiculo.query.filter_by(numero_ordem=self.numero_ordem.data).first()
-        if veiculo_delete==None:
-            flash('Error: Veículo não encontrado')
-        else:
-            db.session.delete(veiculo_delete)
-            db.session.commit()
-
 class VeiculoFormUpdate(FlaskForm):
     numero_ordem=IntegerField('Veículo', validators=[DataRequired()])
     motor=StringField('Motor', validators=[DataRequired()])
